@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:foodly/common/back_ground_container.dart';
+import 'package:foodly/constants/uidata.dart';
+import 'package:foodly/views/home/widgets/foods_tiles_widget.dart';
 
 import '../../constants/constants.dart';
 
@@ -16,11 +20,28 @@ class AllRecomendations extends StatelessWidget {
           'All Recomendations',
           style: TextStyle(
             fontSize: 16,
+            color: kGray,
+            fontWeight: FontWeight.w600,
           ),
         ),
       ),
-      body: Center(
-        child: Text("All Recomendation"),
+      body: BackGroundContainer(
+        color: Colors.white,
+        child: Padding(
+          padding: EdgeInsets.all(12.h),
+          child: ListView(
+            scrollDirection: Axis.vertical,
+            children: List.generate(
+              foods.length,
+              (index) {
+                var food = foods[index];
+                return FoodsTileWidget(
+                  food: food,
+                );
+              },
+            ),
+          ),
+        ),
       ),
     );
   }
